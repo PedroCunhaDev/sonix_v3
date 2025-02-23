@@ -18,10 +18,10 @@ export class AppComponent implements OnInit {
   q: string = '';
   api: string = "http://localhost:3000/songs";
   currentAudio: HTMLAudioElement | null = null;
+  audioProgress: number = 0;
   currentSong!: Song;
   currentPage: string = 'Olá Pedro';
   startPage: boolean = true;
-  duration: number = 100;
 
   constructor(private http: HttpClient) { }
 
@@ -96,23 +96,30 @@ export class AppComponent implements OnInit {
     this.http.get<any[]>(`${this.api}${this.q ? `?q=${this.q}` : ''}`).subscribe(d => this.songs = d);
   }
 
-  async play(s: Song) {
-    this.currentSong = s;
-    this.duration = Math.floor(s.length);
-    console.log(this.duration);
-    if (this.currentAudio) {
-      this.currentAudio.pause();
-      this.currentAudio.currentTime = 0;
+  play(s: Song) {
+    let aud = this.currentAudio;
+    if (aud) {
+      aud.pause();
+      aud.currentTime = 0;
     }
-    const audio = await new Audio(`${this.api}/${s.id}/file`);
-    this.currentAudio = audio;
-    this.currentAudio.play();
-    console.log(this.currentAudio);
+    aud = new Audio();
+    aud.src = `${this.api}/${s.id}/file`;
+    aud.ontimeupdate = () => {
+      if (aud.duration > 0) {
+        this.audioProgress = (aud.currentTime / aud.duration) * 100;
+      }
+    };
+    aud.load();
+    aud.play();
+    this.currentAudio = aud;
   }
-
   seekAudio(newTime: number) {
     if (this.currentAudio) {
-      this.currentAudio.currentTime = newTime;
+      const seekTime = (newTime / 100) * this.currentAudio.duration;
+      console.log(`Audio time updated from ${this.currentAudio.currentTime} to: ${seekTime}`); 
+      this.currentAudio.currentTime = seekTime;
+    } else {
+      console.log('No audio is currently playing.');
     }
   }
 }

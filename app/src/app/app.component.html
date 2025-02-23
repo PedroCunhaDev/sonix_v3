@@ -1,7 +1,7 @@
 <div class="container">
   <app-navigation (navigate)="navigate($event)"></app-navigation>
   @if (currentAudio) {
-    <app-progress [audio]="currentAudio">
+    <app-progress [audio]="currentAudio" (timeUpdate)="seekAudio($event)" [progress]="audioProgress">
   </app-progress>
 }
   <div id="content">

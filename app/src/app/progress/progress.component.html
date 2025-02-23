@@ -1,19 +1,15 @@
-@if (audio) {
-
-  <div class="progress-container">
-    <div class="time-info">
-      <div>{{ audio.currentTime | timeFormat }}</div>
-      <div>{{ audio.duration | timeFormat }}</div>
-    </div>
-    <input
-    type="range"
-    min="0"
-    [max]="audio.duration"
-    [value]="audio.currentTime"
-    (input)="onSeek($event)"
-    [step]="audio.duration / 100"
-    class="progress-bar"
-    />
+<div class="progress-container">
+  <div class="time-info">
+    <div>{{ audio.currentTime | timeFormat }}</div>
+    <div>{{ audio.duration | timeFormat }}</div>
   </div>
-
-}
+  <input id="bar"
+  type="range"
+  min="0"
+  step="1"
+  max="100"
+  [value]="progress"
+  (input)="onSeek()"
+  class="progress-bar"
+  />
+</div>
