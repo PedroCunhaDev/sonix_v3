@@ -1,0 +1,44 @@
+@use '../vars.scss' as *;
+
+.container {
+  display: flex;
+  width: 100vw;
+
+  #content {
+    padding: 1em;
+    width: 100%;
+    max-width: $md;
+
+    #searchbar {
+      max-width: $sm;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      input, button {
+        border-radius: 15px;
+      }
+      input {
+        width: 100%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+    #current-page {
+      font-size: 2em;
+      opacity: .5;
+      margin-bottom: 1em;
+      display: inline-flex;
+    }
+  }
+  table {
+    margin-top: 1em;
+    width: 100%;
+    app-song {
+      display: contents;
+    }
+  }
+}

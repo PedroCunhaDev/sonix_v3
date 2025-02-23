@@ -1,0 +1,15 @@
+<div class="nav-container">
+  <div #Navigation class="navigation">
+    <div class="item logo pc" [class.active]="current == pages.Start" (click)="onNavigate(pages.Start)">
+      <img alt src="src/assets/icon.svg" width="25px" height="25px"/>&nbsp;Sonix
+    </div>
+    <div class="item" [class.active]="current == pages.Playlists" (click)="onNavigate(pages.Playlists)">Playlists</div>
+    <div class="item logo mobile" [class.active]="current == pages.Start" (click)="onNavigate(pages.Start)">
+      <img alt src="src/assets/icon.svg" width="25px" height="25px"/>
+    </div>
+    <div class="item pc" [class.active]="current == pages.Albums" (click)="onNavigate(pages.Albums)">Albums</div>
+    <div class="item pc" [class.active]="current == pages.Artists" (click)="onNavigate(pages.Artists)">Artists</div>
+    <div class="item pc" [class.active]="current == pages.Upload" (click)="onNavigate(pages.Upload)">Upload</div>
+    <div class="item" [class.active]="current == pages.Profile" (click)="onNavigate(pages.Profile)">Profile</div>
+  </div>
+</div>

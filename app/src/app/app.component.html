@@ -1,0 +1,33 @@
+<div class="container">
+  <app-navigation (navigate)="navigate($event)"></app-navigation>
+  @if (currentAudio) {
+    <app-progress [audio]="currentAudio">
+  </app-progress>
+}
+  <div id="content">
+    <div id="searchbar">
+      <input
+        [(ngModel)]="q"
+        [placeholder]="startPage ? currentPage : 'Search'"
+      /><button (click)="search()">Go</button>
+    </div>
+    <!-- @if (!startPage) {
+    <span id="current-page">{{ currentPage }}</span>
+    } -->
+    @if (startPage) {
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Artist</th>
+          <th class="pc">Album</th>
+          <th>Length</th>
+          <th></th>
+        </tr>
+        @for(s of songs;track $index) {
+        <app-song [song]="s" (play)="play(s)"></app-song>
+        }
+      </table>
+    }
+    <audio #audio controls style="display: none"></audio>
+  </div>
+</div>

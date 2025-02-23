@@ -1,0 +1,68 @@
+@use '../../vars.scss' as *;
+
+.nav-container {
+  background-color: black;
+  color: rgb(70, 70, 70);
+
+  .navigation {
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+
+    .item.active {
+      background-color: rgb(152, 171, 255);
+      color: rgb(0, 0, 61);
+    }
+  }
+
+  @media screen and (min-width: $md) {
+    width: 120px;
+    height: 100vh;
+
+    .navigation {
+      height: 100%;
+      padding: 20px 0;
+      border-right: 1px solid rgb(39, 39, 39);
+      flex-direction: column;
+
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-items: space-around;
+      }
+
+      .item {
+        padding: 10px 20px;
+
+        &:last-of-type {
+          margin-top: auto;
+        }
+      }
+
+      .mobile {
+        display: none !important;
+      }
+    }
+
+  }
+
+  @media screen and (max-width: $md) {
+    width: 100vw;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    .navigation {
+      align-items: center;
+      justify-content: space-around;
+      max-width: 400px;
+      height: 100%;
+      margin: auto;
+      .item {
+        padding: 10px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

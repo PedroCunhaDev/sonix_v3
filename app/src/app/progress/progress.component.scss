@@ -1,0 +1,88 @@
+@use '../../vars.scss' as *;
+
+.progress-bar,
+.time-info {
+  position: absolute;
+}
+
+.time-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: $md) {
+  .progress-bar {
+    bottom: 50px;
+    width: 100%;
+  }
+
+  .time-info {
+    left: 1vw;
+    width: 98vw;
+    bottom: 80px;
+  }
+}
+
+@media screen and (min-width: $md) {
+  .progress-bar {
+    bottom: 0;
+    width: calc(100vw - 120px);
+  }
+
+  .time-info {
+    left: calc(1vw + 120px);
+    width: calc(98vw - 120px);
+    bottom: 32px;
+  }
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 30px;
+  cursor: pointer;
+}
+
+
+input[type="range"]::-moz-range-track {
+  height: 30px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 30px;
+  background: #2ecc71;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  background: #2ecc71;
+  cursor: pointer;
+}
+
+input[type="range"]:hover {
+  opacity: 0.8;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  background-color: #27ae60;
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  background-color: #27ae60;
+}
+
+// Active progress color based on value
+input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #2ecc71 0%, #2ecc71 var(--progress, 0%), #444 var(--progress, 0%), #444 100%);
+}
+
+input[type="range"]::-moz-range-track {
+  background: linear-gradient(to right, #2ecc71 0%, #2ecc71 var(--progress, 0%), #444 var(--progress, 0%), #444 100%);
+}
